@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -34,7 +35,9 @@ class OpenClashRunningSensor(
     """Binary sensor that tracks if OpenClash is running."""
 
     _attr_has_entity_name = True
-    _attr_device_class = BinarySensorDeviceClass.RUNNING
+    _attr_translation_key = "status"
+    _attr_device_class = BinarySensorDeviceClass.CONNECTIVITY
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(
         self,
@@ -43,20 +46,16 @@ class OpenClashRunningSensor(
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        self._attr_name = "Status"
         self._attr_unique_id = f"{entry.entry_id}_status"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
     def is_on(self) -> bool:
         """Return true if OpenClash is running."""
         return self.coordinator.data.is_running if self.coordinator.data else False
-
-    @property
-    def available(self) -> bool:
-        """Return true if coordinator has data."""
-        return self.coordinator.last_update_success and self.coordinator.data is not None
