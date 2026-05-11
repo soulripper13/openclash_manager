@@ -40,7 +40,7 @@
     },
     "switch": {
       "enable": {
-        "name": "Master switch"
+        "name": "Enable"
       }
     },
     "button": {
