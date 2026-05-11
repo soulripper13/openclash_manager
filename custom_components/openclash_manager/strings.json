@@ -1,0 +1,63 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "OpenClash Manager",
+        "description": "Connect to your OpenWrt router over SSH.",
+        "data": {
+          "host": "Host",
+          "port": "SSH port",
+          "username": "SSH username",
+          "password": "SSH password",
+          "config_directory": "Clash config directory",
+          "restart_command": "Restart command"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the router.",
+      "invalid_auth": "SSH authentication failed.",
+      "cannot_read_configs": "Could not read Clash YAML configs.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This router is already configured."
+    }
+  },
+  "entity": {
+    "select": {
+      "config": {
+        "name": "Config"
+      },
+      "operation_mode": {
+        "name": "Operation mode"
+      }
+    },
+    "binary_sensor": {
+      "status": {
+        "name": "Status"
+      }
+    },
+    "switch": {
+      "enable": {
+        "name": "Master switch"
+      }
+    },
+    "button": {
+      "update_subscriptions": {
+        "name": "Update subscriptions"
+      },
+      "update_cores": {
+        "name": "Update cores"
+      },
+      "restart": {
+        "name": "Restart"
+      }
+    },
+    "sensor": {
+      "version": {
+        "name": "Version"
+      }
+    }
+  }
+}

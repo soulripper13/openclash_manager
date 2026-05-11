@@ -1,0 +1,14 @@
+{
+  "domain": "openclash_manager",
+  "name": "OpenClash Manager",
+  "after_dependencies": ["frontend", "http", "lovelace"],
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/katoaroosultan/openclash_config_switcher",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/katoaroosultan/openclash_config_switcher/issues",
+  "loggers": ["paramiko"],
+  "requirements": ["paramiko>=3.4.0"],
+  "version": "0.3.4"
+}
