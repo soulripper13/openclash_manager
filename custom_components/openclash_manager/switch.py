@@ -54,6 +54,7 @@ class OpenClashEnableSwitch(CoordinatorEntity[OpenClashConfigCoordinator], Switc
 
     _attr_has_entity_name = True
     _attr_icon = "mdi:shield-check"
+    _attr_translation_key = "enable"
 
     def __init__(
         self,
@@ -62,12 +63,13 @@ class OpenClashEnableSwitch(CoordinatorEntity[OpenClashConfigCoordinator], Switc
     ) -> None:
         """Initialize the switch."""
         super().__init__(coordinator)
-        self._attr_name = "Master Switch"
         self._attr_unique_id = f"{entry.entry_id}_enable"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
@@ -104,13 +106,20 @@ class OpenClashConfigSwitch(CoordinatorEntity[OpenClashConfigCoordinator], Switc
         """Initialize the config switch."""
         super().__init__(coordinator)
         self._option = option
-        self._attr_name = option
+        # Strip extension for a cleaner name
+        display_name = option
+        for ext in (".yaml", ".yml"):
+            if display_name.lower().endswith(ext):
+                display_name = display_name[: -len(ext)]
+        self._attr_name = display_name
         option_hash = sha1(option.encode("utf-8")).hexdigest()
         self._attr_unique_id = f"{entry.entry_id}_config_{option_hash}"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
