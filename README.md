@@ -1,7 +1,14 @@
 # OpenClash Manager
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
-![Version](https://img.shields.io/badge/version-0.4.0-blue.svg?style=for-the-badge)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/release/soulripper13/openclash_manager.svg)](https://github.com/soulripper13/openclash_manager/releases)
+[![License](https://img.shields.io/github/license/soulripper13/openclash_manager.svg)](LICENSE)
+![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.4.0%2B-blue.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2026.svg)
+[![GitHub Stars](https://img.shields.io/github/stars/soulripper13/openclash_manager?style=social)](https://github.com/soulripper13/openclash_manager)
+[![GitHub Issues](https://img.shields.io/github/issues/soulripper13/openclash_manager?style=flat-square)](https://github.com/soulripper13/openclash_manager/issues)
+![Downloads](https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=Downloads&suffix=%20installs&cacheSeconds=15600&style=for-the-badge&url=https://analytics.home-assistant.io/custom_integrations.json&query=$.openclash_manager.total)
+[![Support Development](https://img.shields.io/badge/Support-Development-FFDD00?style=for-the-badge&logo=paypal&logoColor=black)](#support-the-project)
 
 OpenClash Manager is a powerful Home Assistant custom integration designed to give you full control over your OpenClash configuration on OpenWrt routers via SSH.
 
@@ -53,6 +60,14 @@ To get the best experience in Apple Home:
 2. Include the `switch.enable` and all `switch.*_config` entities.
 3. In the Apple Home app, long-press the **Enable** tile and select **Group with Other Accessories**.
 4. Group all OpenClash-related switches together. This creates a single professional-looking tile that expands to show all controls.
+
+## Support the Project
+
+If you find this project useful, you can support its development:
+
+*   **PayPal**: [https://paypal.me/SKatoaroo](https://paypal.me/SKatoaroo)
+*   **Bitcoin (BTC)**: `bc1qvu8a9gdy3dcxa94jge7d3rd7claapsydjsjxn0`
+*   **Solana (SOL)**: `4jvCR2YFQLqguoyz9qAMPzVbaEcDsG5nzRHFG8SeaeBK`
 
 ## License
 
