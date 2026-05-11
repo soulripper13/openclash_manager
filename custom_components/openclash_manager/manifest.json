@@ -10,5 +10,5 @@
   "issue_tracker": "https://github.com/soulripper13/openclash_manager/issues",
   "loggers": ["paramiko"],
   "requirements": ["paramiko>=3.4.0"],
-  "version": "0.4.0"
+  "version": "1.0.0"
 }
