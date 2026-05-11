@@ -5,6 +5,7 @@ from __future__ import annotations
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -29,6 +30,8 @@ class OpenClashVersionSensor(CoordinatorEntity[OpenClashConfigCoordinator], Sens
 
     _attr_has_entity_name = True
     _attr_icon = "mdi:information-outline"
+    _attr_translation_key = "version"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(
         self,
@@ -37,12 +40,13 @@ class OpenClashVersionSensor(CoordinatorEntity[OpenClashConfigCoordinator], Sens
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        self._attr_name = "Version"
         self._attr_unique_id = f"{entry.entry_id}_version"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
