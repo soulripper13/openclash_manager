@@ -6,6 +6,7 @@ from typing import Any
 
 from homeassistant.components.button import ButtonEntity
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -52,6 +53,7 @@ class OpenClashButton(CoordinatorEntity[OpenClashConfigCoordinator], ButtonEntit
             "manufacturer": "OpenClash",
             "model": "OpenClash Manager",
             "sw_version": coordinator.data.version if coordinator.data else None,
+            "configuration_url": f"http://{entry.data[CONF_HOST]}/cgi-bin/luci/admin/services/openclash",
         }
 
 
