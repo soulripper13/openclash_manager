@@ -7,6 +7,7 @@ from typing import Any
 from homeassistant.components.button import ButtonEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -36,6 +37,7 @@ class OpenClashButton(CoordinatorEntity[OpenClashConfigCoordinator], ButtonEntit
     """Base button for OpenClash actions."""
 
     _attr_has_entity_name = True
+    _attr_entity_category = EntityCategory.CONFIG
 
     def __init__(
         self,
@@ -48,11 +50,15 @@ class OpenClashButton(CoordinatorEntity[OpenClashConfigCoordinator], ButtonEntit
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
 
 class OpenClashUpdateSubscriptionsButton(OpenClashButton):
     """Button to update OpenClash subscriptions."""
+
+    _attr_translation_key = "update_subscriptions"
 
     def __init__(
         self,
@@ -61,7 +67,6 @@ class OpenClashUpdateSubscriptionsButton(OpenClashButton):
     ) -> None:
         """Initialize the button."""
         super().__init__(coordinator, entry)
-        self._attr_name = "Update Subscriptions"
         self._attr_unique_id = f"{entry.entry_id}_update_subscriptions"
         self._attr_icon = "mdi:update"
 
@@ -76,6 +81,8 @@ class OpenClashUpdateSubscriptionsButton(OpenClashButton):
 class OpenClashUpdateCoresButton(OpenClashButton):
     """Button to update OpenClash cores."""
 
+    _attr_translation_key = "update_cores"
+
     def __init__(
         self,
         coordinator: OpenClashConfigCoordinator,
@@ -83,7 +90,6 @@ class OpenClashUpdateCoresButton(OpenClashButton):
     ) -> None:
         """Initialize the button."""
         super().__init__(coordinator, entry)
-        self._attr_name = "Update Cores"
         self._attr_unique_id = f"{entry.entry_id}_update_cores"
         self._attr_icon = "mdi:cpu-64-bit"
 
@@ -98,6 +104,8 @@ class OpenClashUpdateCoresButton(OpenClashButton):
 class OpenClashRestartButton(OpenClashButton):
     """Button to restart OpenClash."""
 
+    _attr_translation_key = "restart"
+
     def __init__(
         self,
         coordinator: OpenClashConfigCoordinator,
@@ -105,7 +113,6 @@ class OpenClashRestartButton(OpenClashButton):
     ) -> None:
         """Initialize the button."""
         super().__init__(coordinator, entry)
-        self._attr_name = "Restart"
         self._attr_unique_id = f"{entry.entry_id}_restart"
         self._attr_icon = "mdi:restart"
 
