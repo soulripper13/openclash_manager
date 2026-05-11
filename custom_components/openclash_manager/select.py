@@ -5,6 +5,7 @@ from __future__ import annotations
 from homeassistant.components.select import SelectEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -35,6 +36,7 @@ class OpenClashConfigSelect(CoordinatorEntity[OpenClashConfigCoordinator], Selec
     _attr_has_entity_name = True
     _attr_icon = "mdi:file-swap-outline"
     _attr_translation_key = "config"
+    _attr_entity_category = EntityCategory.CONFIG
 
     def __init__(
         self,
@@ -48,6 +50,8 @@ class OpenClashConfigSelect(CoordinatorEntity[OpenClashConfigCoordinator], Selec
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
@@ -80,6 +84,7 @@ class OpenClashOperationModeSelect(
     _attr_icon = "mdi:router-wireless-settings"
     _attr_translation_key = "operation_mode"
     _attr_options = ["rule", "global", "direct"]
+    _attr_entity_category = EntityCategory.CONFIG
 
     def __init__(
         self,
@@ -94,6 +99,8 @@ class OpenClashOperationModeSelect(
             "identifiers": {(DOMAIN, entry.entry_id)},
             "name": entry.title,
             "manufacturer": "OpenClash",
+            "model": "OpenClash Manager",
+            "sw_version": coordinator.data.version if coordinator.data else None,
         }
 
     @property
